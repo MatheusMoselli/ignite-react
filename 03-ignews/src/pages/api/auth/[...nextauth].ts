@@ -37,5 +37,35 @@ export default NextAuth({
         return false;
       }
     },
+    async session(params) {
+      try {
+        const userActiveSubscription = await fauna.query(
+          q.Get(
+            q.Intersection([
+              q.Match(
+                q.Index("subscription_by_userId"),
+                q.Select(
+                  "ref",
+                  q.Get(
+                    q.Match(
+                      q.Index("user_by_email"),
+                      q.Casefold(params.user.email)
+                    )
+                  )
+                )
+              ),
+              q.Match(q.Index("subscription_by_status"), "active"),
+            ])
+          )
+        );
+
+        return {
+          ...params.session,
+          activeSubscription: userActiveSubscription,
+        };
+      } catch {
+        return { ...params.session, activeSubscription: null };
+      }
+    },
   },
 });
