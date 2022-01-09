@@ -17,7 +17,7 @@ interface PostProps {
   posts: Post[];
 }
 
-export default ({ posts }: PostProps) => {
+const Posts = ({ posts }: PostProps) => {
   return (
     <>
       <Head>
@@ -69,3 +69,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: { posts },
   };
 };
+
+export default Posts;

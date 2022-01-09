@@ -11,7 +11,7 @@ interface HomeProps {
   };
 }
 
-export default ({ product }: HomeProps) => {
+const Home = ({ product }: HomeProps) => {
   return (
     <>
       <Head>
@@ -53,3 +53,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 60 * 24, // 24 hours
   };
 };
+
+export default Home;

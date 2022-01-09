@@ -14,7 +14,7 @@ interface PostProps {
   };
 }
 
-export default ({ post }: PostProps) => {
+const Post = ({ post }: PostProps) => {
   return (
     <>
       <Head>
@@ -69,3 +69,5 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return { props: { post } };
 };
+
+export default Post;

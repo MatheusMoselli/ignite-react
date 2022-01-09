@@ -17,7 +17,7 @@ interface PostPreviewProps {
   };
 }
 
-export default ({ post }: PostPreviewProps) => {
+const PostPreview = ({ post }: PostPreviewProps) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -84,3 +84,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     revalidate: 60 * 30, // 30 minutes
   };
 };
+
+export default PostPreview;
